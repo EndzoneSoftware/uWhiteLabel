@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace uWhiteLabel.Install
 {
-    class InstallControl : System.Web.UI.UserControl
+    public class InstallControl : System.Web.UI.UserControl
     {
         protected string Test;
         protected void Page_Load(object sender, EventArgs e)
