@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+  <info>
+    <package>
+      <name>uCop</name>
+      <version>1.0.0</version>
+      <license url="http://unlicense.org/">UNLICENCE</license>
+      <url>https://github.com/EndzoneSoftware/uWhiteLabel</url>
+      <requirements>
+        <major>7</major>
+        <minor>0</minor>
+        <patch>0</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>HappyPorch</name>
+      <website>http://www.happyporch.com</website>
+    </author>
+    <readme><![CDATA[Custom, branded welcome screen for your Umbraco editors in back office.]]></readme>
+  </info>
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros />
+  <DictionaryItems />
+  <Languages />
+  <DataTypes />
+  <Actions>
+  </Actions>
+    <files>
+      <file>/App_Plugins/uWhiteLabel</file>
+      <file>/bin/uWhiteLabel.dll</file>
+    </files>
+    <languages>
+    </languages>
+    <dictionaryitems>
+    </dictionaryitems>
+    <loadcontrol>
+    </loadcontrol>
+  </umbPackage>
