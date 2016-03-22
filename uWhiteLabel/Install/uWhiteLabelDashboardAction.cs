@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Web.Configuration;
-using System.Xml;
+﻿using System.Xml;
 using umbraco.interfaces;
 using Umbraco.Core.IO;
 using Umbraco.Core;
@@ -11,7 +9,7 @@ namespace uWhiteLabel.Install
     public class uWhiteLabelDashboardAction : IPackageAction
     {
         private const string startupSectionXPth = "//section[@alias='StartupDashboardSection']";
-        // can we assume that our tab is always caption="Welcome"?? (What if something else uses this?)
+        //  we assume that no tab with same caption attribute value exists, if it does then do nothing!
         private const string welcomeTabXPath = "//section[@alias='StartupDashboardSection']/tab[@caption='Welcome']";
 
 
@@ -60,8 +58,6 @@ namespace uWhiteLabel.Install
                 dashboardFile.SelectSingleNode(startupSectionXPth).RemoveChild(section);
                 dashboardFile.Save(IOHelper.MapPath(dbConfig));
             }
-
-            return true;
 
             return true;
         }
