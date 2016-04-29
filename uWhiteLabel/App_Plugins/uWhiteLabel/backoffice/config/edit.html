@@ -1,46 +1,46 @@
-﻿<div ng-controller="uWhiteLabel.Config.WelcomeScreenController">
-    <umb-panel>
-        <umb-header tabs="content.tabs">
-            <div class="umb-headline-editor-wrapper span12 ng-scope">
-                <h1 class="ng-binding">Welcome Screen Settings</h1>
-            </div>
-        </umb-header>
-
-        <umb-tab-view>
-            <umb-tab id="tab1" rel="intro">
-                <div class="umb-pane">
-                    <umb-pane>
-                        <p>The <em>Welcome Screen</em> is the first tab in the Content Section and appears for all users.</p>
-                    </umb-pane>
+﻿<div>
+    <form name="uWhiteLabelConfigForm" ng-submit="submit(model)"  ng-controller="uWhiteLabel.Config.WelcomeScreenController" val-form-manager>
+        <umb-panel>
+            <umb-header tabs="content.tabs">
+                <div class="umb-headline-editor-wrapper span12 ng-scope">
+                    <h1 class="ng-binding">Welcome Screen Settings</h1>
                 </div>
-            </umb-tab>
-            <umb-tab id="tab2" rel="iframe">
-                <div class="umb-pane">
-                    <p>Your <em>Welcome Screen</em> can display any URL in an iFrame, leave this blank to use <em>basic</em> settings.</p>
-                    <umb-pane>
-                        <umb-control-group label="iFrame Url">
-                            <input type="text" name="url" ng-model="model.url" required />
-                        </umb-control-group>
-                    </umb-pane>
-                    <div class="btn-toolbar umb-btn-toolbar pull-right">
-                        <a class="btn btn-link" ng-click="close()">
-                            <localize key="cancel" />
-                        </a>
-                        <button type="submit" class="btn btn-primary" ng-disabled="!dialogForm.$valid">
-                            <localize key="buttons_save">Save</localize>
-                        </button>
+            </umb-header>
+            <umb-tab-view>
+                <umb-tab id="tab1" rel="intro">
+                    <div class="umb-pane">
+                        <umb-pane>
+                            <p>The <em>Welcome Screen</em> is the first tab in the Content Section and appears for all users.</p>
+                        </umb-pane>
                     </div>
-                </div>
-            </umb-tab>
+                </umb-tab>
+                <umb-tab id="tab2" rel="iframe">
+                    <div class="umb-pane">
+                        <p>Your <em>Welcome Screen</em> can display any URL in an iFrame, leave this blank to use <em>basic</em> settings.</p>
+                        <umb-pane>
+                            <umb-control-group label="iFrame Url">
+                                <input type="url" name="url" ng-model="url" no-Dirty-Check />
+                            </umb-control-group>
+                        </umb-pane>
+                        <div class="btn-toolbar umb-btn-toolbar pull-right">
+                            <a class="btn btn-link" ng-click="close()">
+                                <localize key="cancel" />
+                            </a>
+                            <button type="submit" class="btn btn-primary" ng-disabled="uWhiteLabelConfigForm.url.$invalid">
+                                <localize key="buttons_save">Save</localize>
+                            </button>
+                        </div>
+                    </div>
+                </umb-tab>
 
-            <umb-tab id="tab3" rel="basic">
+                <umb-tab id="tab3" rel="basic">
 
-                <div class="umb-pane">
-                    Coming soon
-                </div>
-            </umb-tab>
+                    <div class="umb-pane">
+                        Coming soon
+                    </div>
+                </umb-tab>
 
-        </umb-tab-view>
-
-    </umb-panel>
+            </umb-tab-view>
+        </umb-panel>
+    </form>
 </div>

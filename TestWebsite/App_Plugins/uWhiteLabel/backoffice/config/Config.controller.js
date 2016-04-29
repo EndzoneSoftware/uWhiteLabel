@@ -7,6 +7,7 @@
 
         $scope.content = { tabs: [{ id: 1, label: "Help" }, { id: 2, label: "Iframe" }, { id: 3, label: "Basic" }] };
 
+        $scope.url = "";
 
         $scope.runImport = function (importID) {
             console.log("I have called our REST API");
