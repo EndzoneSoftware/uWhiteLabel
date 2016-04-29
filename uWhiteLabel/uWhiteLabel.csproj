@@ -256,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\uWhiteLabelController.cs" />
+    <Compile Include="Controllers\uWhiteLabelTreeController.cs" />
     <Compile Include="Install\InstallControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -274,6 +275,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\uWhiteLabel\backoffice\config\Config.controller.js" />
+    <Content Include="App_Plugins\uWhiteLabel\backoffice\config\edit.html" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\Install.ascx" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uWhiteLabel.controller.js" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uWhiteLabel.css" />
