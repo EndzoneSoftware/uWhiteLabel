@@ -1,7 +1,7 @@
 ﻿angular.module("umbraco").controller("uWhiteLabel.DashboardController", 
-	function ($scope, $http, notificationsService) {
+	function ($scope, $http, uWhiteLabelResource, notificationsService) {
 
-		$http.get("backoffice/uWhiteLabel/Dashboard/iFrameData").then(function (response) {
+	    uWhiteLabelResource.getIFrameUrl().then(function (response) {
 			$scope.Url = response.data.Url;
 		}, function (response) {
 			$scope.Url = "error";

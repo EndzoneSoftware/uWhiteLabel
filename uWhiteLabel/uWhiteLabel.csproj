@@ -278,6 +278,7 @@
     <Content Include="App_Plugins\uWhiteLabel\backoffice\config\Config.controller.js" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\config\edit.html" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\Install.ascx" />
+    <Content Include="App_Plugins\uWhiteLabel\backoffice\uWhiteLabel.resources.js" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uWhiteLabel.controller.js" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uWhiteLabel.css" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\Welcome.html" />

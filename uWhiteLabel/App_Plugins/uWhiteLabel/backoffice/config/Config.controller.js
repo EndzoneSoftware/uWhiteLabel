@@ -1,13 +1,15 @@
 ﻿'use strict';
 (function () {
     //create the controller
-    function uWhiteLabelWelcomeScreenController($scope, $routeParams, $http) {
+    function uWhiteLabelWelcomeScreenController($scope, $routeParams, $http, uWhiteLabelResource) {
         //set a property on the scope equal to the current route id
         $scope.id = $routeParams.id;
 
         $scope.content = { tabs: [{ id: 1, label: "Help" }, { id: 2, label: "Iframe" }, { id: 3, label: "Basic" }] };
 
-        $scope.url = "";
+        uWhiteLabelResource.getIFrameUrl().then(function (response) {
+            $scope.url = response.data.Url;
+        });
 
         $scope.runImport = function (importID) {
             console.log("I have called our REST API");
