@@ -286,7 +286,6 @@
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uWhiteLabel.css" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\welcome.default.htm" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\Welcome.html" />
-    <Content Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
