@@ -1,7 +1,10 @@
 ﻿'use strict';
 (function () {
     //create the controller
-    function uWhiteLabelWelcomeScreenController($scope, $routeParams, $http, uWhiteLabelResource, notificationsService) {
+    function uWhiteLabelWelcomeScreenController($scope, $routeParams, $http, uWhiteLabelResource, notificationsService, navigationService) {
+
+        navigationService.syncTree({ tree: 'uwhitelabel-config', path: ["-1", "2222"], forceReload: false });
+
         //set a property on the scope equal to the current route id
         $scope.id = $routeParams.id;
 

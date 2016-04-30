@@ -11,7 +11,7 @@ using Umbraco.Web.Trees;
 
 namespace uWhiteLabel
 {
-    [Tree("developer", "config", "uWhiteLabel", sortOrder:10)]
+    [Tree("developer", "uwhitelabel-config", "uWhiteLabel", sortOrder:10)]
     [PluginController("uWhiteLabel")]
     public class uWhiteLabelTreeController : TreeController
     {
@@ -22,9 +22,9 @@ namespace uWhiteLabel
             if (id == Constants.System.Root.ToInvariantString())
             {
                 var tree = new TreeNodeCollection();
-                var node = CreateTreeNode("1", id, queryStrings, "Welcome Screen", "icon-smiley-inverted");
+                var node = CreateTreeNode("2222", id, queryStrings, "Welcome Screen", "icon-smiley-inverted");
                 //see http://issues.umbraco.org/issue/U4-6617
-                node.RoutePath = "/developer/config/welcome/edit";
+                node.RoutePath = "/developer/uwhitelabel-config/welcome/edit";
                 tree.Add(node);
                 return tree;
             }
