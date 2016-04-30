@@ -1,5 +1,5 @@
 ﻿<div>
-    <form name="uWhiteLabelConfigForm" ng-submit="submit(model)"  ng-controller="uWhiteLabel.Config.WelcomeScreenController" val-form-manager>
+    <form name="uWhiteLabelConfigForm" ng-submit="submit(model)" ng-controller="uWhiteLabel.Config.WelcomeScreenController as vm" val-form-manager>
         <umb-panel>
             <umb-header tabs="content.tabs">
                 <div class="umb-headline-editor-wrapper span12 ng-scope">
@@ -23,9 +23,15 @@
                             </umb-control-group>
                         </umb-pane>
                         <div class="btn-toolbar umb-btn-toolbar pull-right">
-                            <button ng-click="SaveIframe(uWhiteLabelConfigForm.url)" class="btn btn-primary" ng-disabled="uWhiteLabelConfigForm.url.$invalid">
-                                <localize key="buttons_save">Save</localize>
-                            </button>
+                            <umb-button action="SaveIframe(uWhiteLabelConfigForm.url)"
+                                        type="button"
+                                        button-style="success"
+                                        state="vm.saveButtonState"
+                                        shortcut="ctrl+s"
+                                        label="Save"
+                                        disabled="saveButtonState === 'busy'">
+                            </umb-button>
+
                         </div>
                     </div>
                 </umb-tab>
