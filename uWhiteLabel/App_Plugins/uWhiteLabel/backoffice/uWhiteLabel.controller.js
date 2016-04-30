@@ -1,7 +1,7 @@
 ﻿angular.module("umbraco").controller("uWhiteLabel.DashboardController",
 	function ($scope, $http, uWhiteLabelResource, notificationsService) {
 
-	    $scope.mode = "default";
+	    $scope.mode = "notConfiged";
 
 	    uWhiteLabelResource.getIFrameUrl().then(function (response) {
 	        if (response.data.HasIframe) {
@@ -20,6 +20,7 @@
 	        });
 
 	    }
+
 
 	}
 );
