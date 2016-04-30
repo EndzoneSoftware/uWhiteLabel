@@ -10,20 +10,19 @@
 
         var vm = this;
 
-        vm.saveButtonState = "init";
 
         $scope.content = { tabs: [{ id: 1, label: "Help" }, { id: 2, label: "Iframe" }, { id: 3, label: "Html" }] };
 
         uWhiteLabelResource.getIFrameUrl().then(function (response) {
-            $scope.url = response.data.Url;
+            vm.url = response.data.Url;
         });
         uWhiteLabelResource.getHtml(true).then(function (response) {
-            $scope.html = response.data.Html;
+            vm.html = response.data.Html;
         });
 
-        $scope.SaveIframe = function (url) {
+        vm.saveButtonState = "init";
+        $scope.SaveIframe = function (saveUrl) {
             vm.saveButtonState = "busy";
-            var saveUrl = (url.$modelValue) ? url.$modelValue : "";
             uWhiteLabelResource.saveIFrameUrl(saveUrl).then(function (response) {
                 notificationsService.success("Success", "iFrame URL has been saved");
                 vm.saveButtonState = "success";
@@ -32,9 +31,10 @@
                 vm.saveButtonState = "error";
             });
         }
-        $scope.SaveHtml = function (html) {
+
+        vm.saveHtmlButtonState = "init";
+        $scope.SaveHtml = function (saveHtml) {
             vm.saveHtmlButtonState = "busy";
-            var saveHtml = (html.$modelValue) ? html.$modelValue : "";
             uWhiteLabelResource.saveHtml(saveHtml).then(function (response) {
                 notificationsService.success("Success", "Your custom HTML has been saved");
                 vm.saveHtmlButtonState = "success";
@@ -42,6 +42,17 @@
                 notificationsService.error("Error", "Unable to save your HTML");
                 vm.saveHtmlButtonState = "error";
             });
+        }
+        $scope.GetDefaultHtml = function () {
+            vm.resetHtmlButtonState = "busy";
+            uWhiteLabelResource.getDefaultHtml().then(function (response) {
+                vm.html = response.data.Html;
+                vm.resetHtmlButtonState = "success";
+            }, function (response) {
+                notificationsService.error("Error", "Unable to get reset HTML");
+                vm.resetHtmlButtonState = "error";
+            });
+            return $scope.html;
         }
 
     };

@@ -72,5 +72,13 @@ namespace uWhiteLabel
             var data = new { Html = html, HasHtml = hasHtml };
             return data;
         }
+        [HttpGet]
+        public object GetDefaultHtml()
+        {
+            var defaultHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToDefaultHtml);
+            var html = File.ReadAllText(defaultHtmlFile);
+            var data = new { Html = html };
+            return data;
+        }
     }
 }

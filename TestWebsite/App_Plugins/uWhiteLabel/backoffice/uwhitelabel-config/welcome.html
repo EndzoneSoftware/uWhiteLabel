@@ -19,17 +19,17 @@
                         <p>Your <em>Welcome Screen</em> can display any URL in an iFrame, leave this blank to use other options.</p>
                         <umb-pane>
                             <umb-control-group label="iFrame Url">
-                                <input type="url" name="url" ng-model="url" no-Dirty-Check />
+                                <input type="url" name="url" ng-model="vm.url" no-Dirty-Check />
                             </umb-control-group>
                         </umb-pane>
                         <div class="btn-toolbar umb-btn-toolbar pull-right">
-                            <umb-button action="SaveIframe(uWhiteLabelConfigForm.url)"
+                            <umb-button action="SaveIframe(vm.url)"
                                         type="button"
                                         button-style="success"
                                         state="vm.saveButtonState"
                                         shortcut="ctrl+s"
                                         label="Save"
-                                        disabled="saveButtonState === 'busy'">
+                                        disabled="vm.saveButtonState === 'busy'">
                             </umb-button>
 
                         </div>
@@ -44,19 +44,28 @@
                             <p>Your <em>Welcome Screen</em> can display basic HTML.</p>
                             <umb-pane>
                                 <umb-control-group label="Your Custom Html">
-                                    <textarea name="html" ng-model="html" style="width: 80%; height: 300px" no-Dirty-Check />
+                                    <textarea name="html" ng-model="vm.html" style="width: 80%; height: 300px" no-Dirty-Check />
                                 </umb-control-group>
                             </umb-pane>
-                            <div class="btn-toolbar umb-btn-toolbar pull-right">
-                                <umb-button action="SaveHtml(uWhiteLabelConfigForm.html)"
+                            <div class="btn-toolbar umb-btn-toolbar">
+                                <umb-button action="GetDefaultHtml()"
                                             type="button"
-                                            button-style="success"
-                                            state="vm.saveHtmlButtonState"
-                                            shortcut="ctrl+s"
-                                            label="Save"
-                                            disabled="saveHtmlButtonState === 'busy'">
+                                            button-style="link"
+                                            state=""
+                                            shortcut=""
+                                            label="Reset to example HTML"
+                                            disabled="vm.resetHtmlButtonState === 'busy'">
                                 </umb-button>
-
+                                <div class=" pull-right">
+                                    <umb-button action="SaveHtml(vm.html)"
+                                                type="button"
+                                                button-style="success"
+                                                state="vm.saveHtmlButtonState"
+                                                shortcut="ctrl+s"
+                                                label="Save"
+                                                disabled="vm.saveHtmlButtonState === 'busy'">
+                                    </umb-button>
+                                </div>
                             </div>
                         </div>
                     </div>
