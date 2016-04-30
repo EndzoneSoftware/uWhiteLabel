@@ -257,6 +257,7 @@
   <ItemGroup>
     <Compile Include="Controllers\uWhiteLabelController.cs" />
     <Compile Include="Controllers\uWhiteLabelTreeController.cs" />
+    <Compile Include="Helpers\AppSettingsHelpers.cs" />
     <Compile Include="Install\InstallControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
