@@ -8,3 +8,10 @@
     height: 99%;
     overflow: auto!important;
 }
+
+.icon-warning .icon {
+    color: red;
+}
+.icon-warning  .icon:after {
+    content: '!';
+}

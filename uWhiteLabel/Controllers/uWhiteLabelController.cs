@@ -1,50 +1,46 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
-using System.Configuration;
-using System;
 using uWhiteLabel.Helpers;
-using System.IO;
 
 namespace uWhiteLabel
 {
     [PluginController("uWhiteLabel")]
     public class DashboardController : UmbracoAuthorizedApiController
     {
-        const string iframeUrlAppKeyName = "uWhiteLabel.iFrame.Url";
-        const string pathToSavedHtml = "~/App_Plugins/uWhiteLabel/backoffice/welcome.saved.htm";
-        const string pathToDefaultHtml = "~/App_Plugins/uWhiteLabel/backoffice/welcome.default.htm";
+
+        [HttpGet]
+        public object IsWelcomeScreenConfiged()
+        {
+            bool isConfiged = Configure.IsWelcomeScreenConfigured();
+
+            var data = new { isConfiged = isConfiged };
+            return data;
+        }
 
         [HttpGet]
         public object iFrameData()
         {
-            Uri url;
+            string url = Configure.GetIFrameUrl();
 
-            if (Uri.TryCreate(ConfigurationManager.AppSettings[iframeUrlAppKeyName], UriKind.Absolute, out url))
+            if (!String.IsNullOrEmpty(url))
             {
-                var data = new { Url = url.AbsoluteUri, HasIframe = true };
+                var data = new { Url = url, HasIframe = true };
                 return data;
             }
             return new { HasIframe = false };
         }
 
         [HttpGet]
-        public string SaveiFrameData(string url)
+        public void SaveiFrameData(string url)
         {
             if (String.IsNullOrWhiteSpace(url))
             {
-                AppSettingsHelper.RemoveAppSettingsKey(iframeUrlAppKeyName);
-                return url;
+                Configure.RemoveIFrameUrl();
             }
 
-            Uri uri;
-
-            if (Uri.TryCreate(url, UriKind.Absolute, out uri))
-            {
-                AppSettingsHelper.CreateAppSettingsKey(iframeUrlAppKeyName, url);
-                return url;
-            }
-            throw new Exception("Cannot save invalid uWhiteLabel iFrame URL");
+            Configure.SaveIFrameUrl(url);
             
         }
 
@@ -52,22 +48,14 @@ namespace uWhiteLabel
         [HttpPost]
         public object SaveHtml([FromBody]string html)
         {
-            var savedHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToSavedHtml);
-            File.WriteAllText(savedHtmlFile, html);
-
+            Configure.SaveHtml(html);
             var data = new { Html = html };
             return data;
         }
         [HttpGet]
         public object GetHtml(bool useDefault)
         {
-            var savedHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToSavedHtml);
-            var defaultHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToDefaultHtml);
-            var html = (useDefault) ? File.ReadAllText(defaultHtmlFile) : "";
-            if (File.Exists(savedHtmlFile))
-            {
-                html = File.ReadAllText(savedHtmlFile);
-            }
+            var html = Configure.GetHtml(useDefault);
             var hasHtml = !String.IsNullOrWhiteSpace(html);
             var data = new { Html = html, HasHtml = hasHtml };
             return data;
@@ -75,8 +63,7 @@ namespace uWhiteLabel
         [HttpGet]
         public object GetDefaultHtml()
         {
-            var defaultHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToDefaultHtml);
-            var html = File.ReadAllText(defaultHtmlFile);
+            var html = Configure.GetDefaultHtml();
             var data = new { Html = html };
             return data;
         }

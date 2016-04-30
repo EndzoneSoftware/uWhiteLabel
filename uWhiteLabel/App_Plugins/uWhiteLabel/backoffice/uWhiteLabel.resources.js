@@ -15,6 +15,9 @@
          },
          saveHtml: function (html) {
              return $http.post("backoffice/uWhiteLabel/Dashboard/SaveHtml", JSON.stringify(html));
+         },
+         IsWelcomeScreenConfiged: function () {
+             return $http.get("backoffice/uWhiteLabel/Dashboard/IsWelcomeScreenConfiged");
          }
      };
  });

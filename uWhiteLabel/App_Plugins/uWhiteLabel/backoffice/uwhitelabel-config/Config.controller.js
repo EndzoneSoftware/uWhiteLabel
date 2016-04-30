@@ -5,13 +5,13 @@
 
         navigationService.syncTree({ tree: 'uwhitelabel-config', path: ["-1", "2222"], forceReload: false });
 
-        //set a property on the scope equal to the current route id
-        $scope.id = $routeParams.id;
+        $scope.content = { tabs: [{ id: 1, label: "Help" }, { id: 2, label: "Iframe" }, { id: 3, label: "Html" }] };
 
         var vm = this;
-
-
-        $scope.content = { tabs: [{ id: 1, label: "Help" }, { id: 2, label: "Iframe" }, { id: 3, label: "Html" }] };
+        
+        uWhiteLabelResource.IsWelcomeScreenConfiged().then(function (response) {
+            vm.isConfiged = response.data.isConfiged;
+        });
 
         uWhiteLabelResource.getIFrameUrl().then(function (response) {
             vm.url = response.data.Url;
@@ -26,6 +26,7 @@
             uWhiteLabelResource.saveIFrameUrl(saveUrl).then(function (response) {
                 notificationsService.success("Success", "iFrame URL has been saved");
                 vm.saveButtonState = "success";
+                vm.isConfiged = true;
             }, function (response) {
                 notificationsService.error("Error", "iFrame URL is not valid");
                 vm.saveButtonState = "error";
@@ -38,6 +39,7 @@
             uWhiteLabelResource.saveHtml(saveHtml).then(function (response) {
                 notificationsService.success("Success", "Your custom HTML has been saved");
                 vm.saveHtmlButtonState = "success";
+                vm.isConfiged = true;
             }, function (response) {
                 notificationsService.error("Error", "Unable to save your HTML");
                 vm.saveHtmlButtonState = "error";
