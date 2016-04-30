@@ -1,5 +1,5 @@
 ﻿{
-    "dlls": ["uWhiteLabel/bin/Debug/uWhiteLabel.dll"],
+    "dlls": ["uWhiteLabel/bin/Release/uWhiteLabel.dll"],
     "packageXmlTemplate": "uWhiteLabel/Package.xml",
     "includeFolders": ["uWhiteLabel/App_Plugins"]
 }
