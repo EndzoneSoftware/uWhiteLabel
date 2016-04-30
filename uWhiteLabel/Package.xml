@@ -2,21 +2,21 @@
 <umbPackage>
   <info>
     <package>
-      <name>uCop</name>
-      <version>1.0.0</version>
+      <name>uWhiteLabel</name>
+      <version>0.2.1</version>
       <license url="http://unlicense.org/">UNLICENCE</license>
-      <url>https://github.com/EndzoneSoftware/uWhiteLabel</url>
+      <url>http://www.happyporch.com/uWhiteLabel</url>
       <requirements>
         <major>7</major>
-        <minor>0</minor>
+        <minor>1</minor>
         <patch>0</patch>
       </requirements>
     </package>
     <author>
-      <name>HappyPorch</name>
+      <name>Barry O'Kane</name>
       <website>http://www.happyporch.com</website>
     </author>
-    <readme><![CDATA[Custom, branded welcome screen for your Umbraco editors in back office.]]></readme>
+    <readme><![CDATA[Custom backoffice welcome screen for your Umbraco editors. More info: http://www.happyporch.com/uwhitelabel/]]></readme>
   </info>
   <DocumentTypes />
   <Templates />
@@ -26,15 +26,13 @@
   <Languages />
   <DataTypes />
   <Actions>
+    <Action runat="install" undo="true" alias="uWhiteLabelDashboard" />
   </Actions>
     <files>
-      <file>/App_Plugins/uWhiteLabel</file>
-      <file>/bin/uWhiteLabel.dll</file>
     </files>
     <languages>
     </languages>
     <dictionaryitems>
     </dictionaryitems>
-    <loadcontrol>
-    </loadcontrol>
+  <loadcontrol>/App_Plugins/uWhiteLabel/backoffice/Install.ascx</loadcontrol>
   </umbPackage>
