@@ -19,15 +19,21 @@ namespace uWhiteLabel
 
             if (Uri.TryCreate(ConfigurationManager.AppSettings[iframeUrlAppKeyName], UriKind.Absolute, out url))
             {
-                var data = new { Url = url.AbsoluteUri };
+                var data = new { Url = url.AbsoluteUri, HasIframe = true };
                 return data;
             }
-            throw new Exception(String.Format("Invalid (or missing) '{0}' AppSetting in web.config", iframeUrlAppKeyName));
+            return new { HasIframe = false };
         }
 
         [HttpGet]
         public string SaveiFrameData(string url)
         {
+            if (String.IsNullOrWhiteSpace(url))
+            {
+                AppSettingsHelper.RemoveAppSettingsKey(iframeUrlAppKeyName);
+                return url;
+            }
+
             Uri uri;
 
             if (Uri.TryCreate(url, UriKind.Absolute, out uri))
