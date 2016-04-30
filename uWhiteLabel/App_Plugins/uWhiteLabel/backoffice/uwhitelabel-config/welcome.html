@@ -16,7 +16,7 @@
                 </umb-tab>
                 <umb-tab id="tab2" rel="iframe">
                     <div class="umb-pane">
-                        <p>Your <em>Welcome Screen</em> can display any URL in an iFrame, leave this blank to use <em>basic</em> settings.</p>
+                        <p>Your <em>Welcome Screen</em> can display any URL in an iFrame, leave this blank to use other options.</p>
                         <umb-pane>
                             <umb-control-group label="iFrame Url">
                                 <input type="url" name="url" ng-model="url" no-Dirty-Check />
@@ -36,10 +36,29 @@
                     </div>
                 </umb-tab>
 
-                <umb-tab id="tab3" rel="basic">
+                <umb-tab id="tab3" rel="html">
 
                     <div class="umb-pane">
-                        Coming soon
+
+                        <div class="umb-pane">
+                            <p>Your <em>Welcome Screen</em> can display basic HTML.</p>
+                            <umb-pane>
+                                <umb-control-group label="Your Custom Html">
+                                    <textarea name="html" ng-model="html" style="width: 80%; height: 300px" no-Dirty-Check />
+                                </umb-control-group>
+                            </umb-pane>
+                            <div class="btn-toolbar umb-btn-toolbar pull-right">
+                                <umb-button action="SaveHtml(uWhiteLabelConfigForm.html)"
+                                            type="button"
+                                            button-style="success"
+                                            state="vm.saveHtmlButtonState"
+                                            shortcut="ctrl+s"
+                                            label="Save"
+                                            disabled="saveHtmlButtonState === 'busy'">
+                                </umb-button>
+
+                            </div>
+                        </div>
                     </div>
                 </umb-tab>
 

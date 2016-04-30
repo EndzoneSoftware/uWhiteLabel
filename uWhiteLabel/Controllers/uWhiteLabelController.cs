@@ -4,6 +4,7 @@ using Umbraco.Web.WebApi;
 using System.Configuration;
 using System;
 using uWhiteLabel.Helpers;
+using System.IO;
 
 namespace uWhiteLabel
 {
@@ -11,6 +12,8 @@ namespace uWhiteLabel
     public class DashboardController : UmbracoAuthorizedApiController
     {
         const string iframeUrlAppKeyName = "uWhiteLabel.iFrame.Url";
+        const string pathToSavedHtml = "~/App_Plugins/uWhiteLabel/backoffice/welcome.saved.htm";
+        const string pathToDefaultHtml = "~/App_Plugins/uWhiteLabel/backoffice/welcome.default.htm";
 
         [HttpGet]
         public object iFrameData()
@@ -43,6 +46,30 @@ namespace uWhiteLabel
             }
             throw new Exception("Cannot save invalid uWhiteLabel iFrame URL");
             
+        }
+
+
+        [HttpPost]
+        public object SaveHtml([FromBody]string html)
+        {
+            var savedHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToSavedHtml);
+            File.WriteAllText(savedHtmlFile, html);
+
+            var data = new { Html = html };
+            return data;
+        }
+        [HttpGet]
+        public object GetHtml()
+        {
+            var savedHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToSavedHtml);
+            var defaultHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToDefaultHtml);
+            var html = File.ReadAllText(defaultHtmlFile);
+            if (File.Exists(savedHtmlFile))
+            {
+                html = File.ReadAllText(savedHtmlFile);
+            }
+            var data = new { Html = html };
+            return data;
         }
     }
 }

@@ -12,10 +12,13 @@
 
         vm.saveButtonState = "init";
 
-        $scope.content = { tabs: [{ id: 1, label: "Help" }, { id: 2, label: "Iframe" }, { id: 3, label: "Basic" }] };
+        $scope.content = { tabs: [{ id: 1, label: "Help" }, { id: 2, label: "Iframe" }, { id: 3, label: "Html" }] };
 
         uWhiteLabelResource.getIFrameUrl().then(function (response) {
             $scope.url = response.data.Url;
+        });
+        uWhiteLabelResource.getHtml().then(function (response) {
+            $scope.html = response.data.Html;
         });
 
         $scope.SaveIframe = function (url) {
@@ -28,7 +31,17 @@
                 notificationsService.error("Error", "iFrame URL is not valid");
                 vm.saveButtonState = "error";
             });
-
+        }
+        $scope.SaveHtml = function (html) {
+            vm.saveHtmlButtonState = "busy";
+            var saveHtml = (html.$modelValue) ? html.$modelValue : "";
+            uWhiteLabelResource.saveHtml(saveHtml).then(function (response) {
+                notificationsService.success("Success", "Your custom HTML has been saved");
+                vm.saveHtmlButtonState = "success";
+            }, function (response) {
+                notificationsService.error("Error", "Unable to save your HTML");
+                vm.saveHtmlButtonState = "error";
+            });
         }
 
     };

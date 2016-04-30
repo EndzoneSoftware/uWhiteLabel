@@ -5,5 +5,5 @@
 <hr />
 <div>
     <p class="umb-abstract">Now set up your custom, white label welcome screen for the Umbraco backoffice</p>
-    <a href="/umbraco#/developer/uwhitelabel-config/welcome/edit" class="btn btn-primary">Configure your welcome screen now</a>
+    <a href="/umbraco#/developer/uwhitelabel-config/welcome/edit" class="btn btn-primary" target="_top">Configure your welcome screen now</a>
 </div>
