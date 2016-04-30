@@ -19,8 +19,9 @@
                         <p>Your <em>Welcome Screen</em> can display any URL in an iFrame, leave this blank to use other options.</p>
                         <umb-pane>
                             <umb-control-group label="iFrame Url">
-                                <input type="url" name="url" ng-model="vm.url" no-Dirty-Check />
+                                <input type="url" name="url" ng-model="vm.url" />
                             </umb-control-group>
+                            <div class="alert alert-warning" ng-show="uWhiteLabelConfigForm.url.$invalid">Must be a valid URL</div>
                         </umb-pane>
                         <div class="btn-toolbar umb-btn-toolbar pull-right">
                             <umb-button action="SaveIframe(vm.url)"
@@ -29,7 +30,7 @@
                                         state="vm.saveButtonState"
                                         shortcut="ctrl+s"
                                         label="Save"
-                                        disabled="vm.saveButtonState === 'busy'">
+                                        disabled="vm.saveButtonState === 'busy' || uWhiteLabelConfigForm.url.$invalid">
                             </umb-button>
 
                         </div>
@@ -41,7 +42,8 @@
                     <div class="umb-pane">
 
                         <div class="umb-pane">
-                            <p>Your <em>Welcome Screen</em> can display basic HTML.</p>
+                            <p>Your <em>Welcome Screen</em> can display basic HTML, style attributes will be ignored.</p>
+                            <div class="alert alert-warning" ng-show="uWhiteLabelConfigForm.url.$viewValue">IFrame must be blank before custom HTML is used</div>
                             <umb-pane>
                                 <umb-control-group label="Your Custom Html">
                                     <textarea name="html" ng-model="vm.html" style="width: 80%; height: 300px" no-Dirty-Check />
