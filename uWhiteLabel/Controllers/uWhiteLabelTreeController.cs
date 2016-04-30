@@ -21,13 +21,13 @@ namespace uWhiteLabel
             // check if we're rendering the root node's children
             if (id == Constants.System.Root.ToInvariantString())
             {
-            var tree = new TreeNodeCollection();
-            var node = CreateTreeNode("2222", id, queryStrings, "Welcome Screen", "icon-smiley-inverted");
-
-            //node.RoutePath = "App_Plugins/uWhiteLabel/backoffice/welcome.html";
-            tree.Add(node);
-            return tree;
-           }
+                var tree = new TreeNodeCollection();
+                var node = CreateTreeNode("1", id, queryStrings, "Welcome Screen", "icon-smiley-inverted");
+                //see http://issues.umbraco.org/issue/U4-6617
+                node.RoutePath = "/developer/config/welcome/edit";
+                tree.Add(node);
+                return tree;
+            }
             // this tree doesn't support rendering more than 1 level
           throw new NotSupportedException();
         }
