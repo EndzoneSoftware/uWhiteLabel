@@ -17,7 +17,7 @@
         uWhiteLabelResource.getIFrameUrl().then(function (response) {
             $scope.url = response.data.Url;
         });
-        uWhiteLabelResource.getHtml().then(function (response) {
+        uWhiteLabelResource.getHtml(true).then(function (response) {
             $scope.html = response.data.Html;
         });
 

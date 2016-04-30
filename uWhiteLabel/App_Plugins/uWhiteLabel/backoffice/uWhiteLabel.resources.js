@@ -4,8 +4,8 @@
          getIFrameUrl: function () {
              return $http.get("backoffice/uWhiteLabel/Dashboard/iFrameData");
          },
-         getHtml: function () {
-             return $http.get("backoffice/uWhiteLabel/Dashboard/GetHtml");
+         getHtml: function (useDefault) {
+             return $http.get("backoffice/uWhiteLabel/Dashboard/GetHtml?useDefault=" + (useDefault ? "true" : "false"));
          },
          saveIFrameUrl: function (url) {
              return $http.get("backoffice/uWhiteLabel/Dashboard/SaveiFrameData?url=" + url);

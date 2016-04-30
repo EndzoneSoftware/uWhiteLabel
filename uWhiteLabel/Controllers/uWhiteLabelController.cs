@@ -59,16 +59,17 @@ namespace uWhiteLabel
             return data;
         }
         [HttpGet]
-        public object GetHtml()
+        public object GetHtml(bool useDefault)
         {
             var savedHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToSavedHtml);
             var defaultHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToDefaultHtml);
-            var html = File.ReadAllText(defaultHtmlFile);
+            var html = (useDefault) ? File.ReadAllText(defaultHtmlFile) : "";
             if (File.Exists(savedHtmlFile))
             {
                 html = File.ReadAllText(savedHtmlFile);
             }
-            var data = new { Html = html };
+            var hasHtml = !String.IsNullOrWhiteSpace(html);
+            var data = new { Html = html, HasHtml = hasHtml };
             return data;
         }
     }
