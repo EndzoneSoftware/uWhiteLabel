@@ -6,14 +6,13 @@ using Newtonsoft.Json;
 
 namespace uWhiteLabel.Helpers
 {
-    public static class Configure
+    public static class ConfigureWelcome
     {
         const string iframeUrlAppKeyName = "uWhiteLabel.iFrame.Url";
         const string pathToDefaultHtml = "~/App_Plugins/uWhiteLabel/backoffice/welcome.default.htm";
 
         //saving should perhaps be moved to db table?
         const string pathToSavedHtml = "~/App_Plugins/uWhiteLabel/backoffice/welcome.saved.htm";
-        const string pathToLoginJson = "~/App_Plugins/uWhiteLabel/backoffice/login.save.json";
 
         public static bool IsWelcomeScreenConfigured()
         {
@@ -73,19 +72,6 @@ namespace uWhiteLabel.Helpers
             var defaultHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToDefaultHtml);
             return File.ReadAllText(defaultHtmlFile);
         }
-
-        public static void SaveLoginDetails(LoginDetails loginDetails)
-        {
-            var saveFile = System.Web.HttpContext.Current.Server.MapPath(pathToLoginJson);
-            string json = JsonConvert.SerializeObject(loginDetails);
-            File.WriteAllText(saveFile, json);
-        }
-
-        public static LoginDetails GetLoginDetails()
-        {
-            var saveFile = System.Web.HttpContext.Current.Server.MapPath(pathToLoginJson);
-            string json = File.ReadAllText(saveFile);
-            return JsonConvert.DeserializeObject<LoginDetails>(json);
-        }
+        
     }
 }

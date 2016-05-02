@@ -259,7 +259,8 @@
     <Compile Include="Controllers\uWhiteLabelTreeController.cs" />
     <Compile Include="Events\uWhiteLabelTreeEvents.cs" />
     <Compile Include="Helpers\AppSettingsHelpers.cs" />
-    <Compile Include="Helpers\Configure.cs" />
+    <Compile Include="Helpers\ConfigureLogin.cs" />
+    <Compile Include="Helpers\ConfigureWelcome.cs" />
     <Compile Include="Install\InstallControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
