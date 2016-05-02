@@ -21,7 +21,7 @@
                         <p>Your <em>Welcome Screen</em> can display any URL in an iFrame, leave this blank to use other options.</p>
                         <umb-pane>
                             <umb-control-group label="iFrame Url">
-                                <input type="url" name="url" ng-model="vm.url" />
+                                <input type="url" name="url" ng-model="vm.url" no-Dirty-Check />
                             </umb-control-group>
                             <div class="alert alert-warning" ng-show="uWhiteLabelConfigForm.url.$invalid">Must be a valid URL</div>
                         </umb-pane>

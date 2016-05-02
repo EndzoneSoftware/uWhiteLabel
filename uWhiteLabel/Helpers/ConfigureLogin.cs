@@ -1,10 +1,9 @@
-﻿using System;
-using System.Configuration;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
-using uWhiteLabel.Models;
-using Newtonsoft.Json;
-using System.Web;
 using System.Text.RegularExpressions;
+using System.Web;
+using uWhiteLabel.Models;
 
 namespace uWhiteLabel.Helpers
 {
@@ -21,14 +20,23 @@ namespace uWhiteLabel.Helpers
         {
             var saveFile = System.Web.HttpContext.Current.Server.MapPath(pathToLoginJson);
             string json = JsonConvert.SerializeObject(loginDetails);
-            File.WriteAllText(saveFile, json);
+            FileInfo file = new FileInfo(saveFile);
+            file.Directory.Create(); // If the directory already exists, this method does nothing.
+            File.WriteAllText(file.FullName, json);
         }
 
         public static LoginDetails GetLoginDetails()
         {
             var saveFile = HttpContext.Current.Server.MapPath(pathToLoginJson);
-            string json = File.ReadAllText(saveFile);
-            return JsonConvert.DeserializeObject<LoginDetails>(json);
+            if (File.Exists(saveFile))
+            {
+                string json = File.ReadAllText(saveFile);
+                return JsonConvert.DeserializeObject<LoginDetails>(json);
+            }
+            else
+            {
+                return new LoginDetails();
+            }
         }
 
         /// <summary>

@@ -12,10 +12,10 @@
                         <p>Show your logo and change the greeting text on the Umbraco backoffice login.</p>
                         <umb-pane>
                             <umb-control-group label="Logo Image Url" description="Optional absolute path to image (include http if hosted externally). Recommended max size: 250 x 50px.">
-                                <input type="text" name="logo" ng-model="vm.logo" />
+                                <input type="text" name="logo" ng-model="vm.logo" no-Dirty-Check />
                             </umb-control-group>
                             <umb-control-group label="Greeting Text" description="Leave blank to keep default Umbraco greeting.">
-                                <input type="text" name="greeting" ng-model="vm.greeting" />
+                                <input type="text" name="greeting" ng-model="vm.greeting" no-Dirty-Check />
                             </umb-control-group>
                         </umb-pane>
                         <div class="btn-toolbar umb-btn-toolbar pull-right">

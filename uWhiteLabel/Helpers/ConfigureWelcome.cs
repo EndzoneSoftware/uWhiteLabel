@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.IO;
-using uWhiteLabel.Models;
-using Newtonsoft.Json;
 
 namespace uWhiteLabel.Helpers
 {
@@ -52,7 +50,9 @@ namespace uWhiteLabel.Helpers
         public static void SaveHtml(string html)
         {
             var savedHtmlFile = System.Web.HttpContext.Current.Server.MapPath(pathToSavedHtml);
-            File.WriteAllText(savedHtmlFile, html);
+            FileInfo file = new FileInfo(savedHtmlFile);
+            file.Directory.Create(); // If the directory already exists, this method does nothing.
+            File.WriteAllText(file.FullName, html);
         }
 
         public static string GetHtml(bool useDefault)
