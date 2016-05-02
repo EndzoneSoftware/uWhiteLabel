@@ -18,6 +18,13 @@
          },
          IsWelcomeScreenConfiged: function () {
              return $http.get("backoffice/uWhiteLabel/Dashboard/IsWelcomeScreenConfiged");
+         },
+         SaveLoginDetails: function (logoUrl, greeting) {
+             var data = { LogoUrl: logoUrl, Greeting: greeting };
+             return $http.post("backoffice/uWhiteLabel/Dashboard/SaveLoginDetails", data);
+         },
+         GetLoginDetails: function () {
+             return $http.get("backoffice/uWhiteLabel/Dashboard/GetLoginDetails");
          }
      };
  });

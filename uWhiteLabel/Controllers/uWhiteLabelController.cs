@@ -3,6 +3,7 @@ using System.Web.Http;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 using uWhiteLabel.Helpers;
+using uWhiteLabel.Models;
 
 namespace uWhiteLabel
 {
@@ -13,7 +14,7 @@ namespace uWhiteLabel
         [HttpGet]
         public object IsWelcomeScreenConfiged()
         {
-            bool isConfiged = Configure.IsWelcomeScreenConfigured();
+            bool isConfiged = ConfigureWelcome.IsWelcomeScreenConfigured();
 
             var data = new { isConfiged = isConfiged };
             return data;
@@ -22,7 +23,7 @@ namespace uWhiteLabel
         [HttpGet]
         public object iFrameData()
         {
-            string url = Configure.GetIFrameUrl();
+            string url = ConfigureWelcome.GetIFrameUrl();
 
             if (!String.IsNullOrEmpty(url))
             {
@@ -37,10 +38,10 @@ namespace uWhiteLabel
         {
             if (String.IsNullOrWhiteSpace(url))
             {
-                Configure.RemoveIFrameUrl();
+                ConfigureWelcome.RemoveIFrameUrl();
             }
 
-            Configure.SaveIFrameUrl(url);
+            ConfigureWelcome.SaveIFrameUrl(url);
             
         }
 
@@ -48,14 +49,34 @@ namespace uWhiteLabel
         [HttpPost]
         public object SaveHtml([FromBody]string html)
         {
-            Configure.SaveHtml(html);
+            ConfigureWelcome.SaveHtml(html);
             var data = new { Html = html };
             return data;
         }
+
+
+        [HttpPost]
+        public object SaveLoginDetails(LoginDetails loginDetails)
+        {
+            ConfigureLogin.SaveLoginDetails(loginDetails);
+            ConfigureLogin.InjectHtmlIntoLoginView(loginDetails);
+
+            var data = new { logoUrl = loginDetails.LogoUrl, greetings = loginDetails.Greeting };
+            return data;
+        }
+
+
+        [HttpGet]
+        public object GetLoginDetails()
+        {
+            return ConfigureLogin.GetLoginDetails();
+        }
+
+
         [HttpGet]
         public object GetHtml(bool useDefault)
         {
-            var html = Configure.GetHtml(useDefault);
+            var html = ConfigureWelcome.GetHtml(useDefault);
             var hasHtml = !String.IsNullOrWhiteSpace(html);
             var data = new { Html = html, HasHtml = hasHtml };
             return data;
@@ -63,7 +84,7 @@ namespace uWhiteLabel
         [HttpGet]
         public object GetDefaultHtml()
         {
-            var html = Configure.GetDefaultHtml();
+            var html = ConfigureWelcome.GetDefaultHtml();
             var data = new { Html = html };
             return data;
         }

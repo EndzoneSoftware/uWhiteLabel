@@ -61,4 +61,34 @@
     //register the controller
     angular.module("umbraco").controller('uWhiteLabel.Config.WelcomeScreenController', uWhiteLabelWelcomeScreenController);
 
+
+    
+    function uWhiteLabelLoginScreenController($scope, $routeParams, $http, uWhiteLabelResource, notificationsService, navigationService) {
+        navigationService.syncTree({ tree: 'uwhitelabel-config', path: ["-1", "2223"], forceReload: false });
+
+
+        $scope.content = { tabs: [{ id: 1, label: "Setup" }] };
+
+        var vm = this;
+
+
+        uWhiteLabelResource.GetLoginDetails().then(function (response) {
+            vm.logo = response.data.LogoUrl;
+            vm.greeting = response.data.Greeting;
+        });
+
+        vm.saveLogoButtonState = "init";
+        $scope.SaveLogin = function (logoUrl, greeting) {
+            vm.saveLogoButtonState = "busy";
+            uWhiteLabelResource.SaveLoginDetails(logoUrl, greeting).then(function (response) {
+                notificationsService.success("Success", "Settings have been saved");
+                vm.saveLogoButtonState = "success";
+                vm.isConfiged = true;
+            }, function (response) {
+                notificationsService.error("Error", "Settings not saved!");
+                vm.saveLogoButtonState = "error";
+            });
+        }
+    }
+    angular.module("umbraco").controller('uWhiteLabel.Config.LoginScreenController', uWhiteLabelLoginScreenController);
 })();

@@ -26,6 +26,11 @@ namespace uWhiteLabel
                 //see http://issues.umbraco.org/issue/U4-6617
                 node.RoutePath = "/developer/uwhitelabel-config/welcome/edit";
                 tree.Add(node);
+
+                var loginNode = CreateTreeNode("2223", id, queryStrings, "Login Screen", "icon-logout");
+                loginNode.RoutePath = "/developer/uwhitelabel-config/login/edit";
+                tree.Add(loginNode);
+
                 return tree;
             }
             // this tree doesn't support rendering more than 1 level

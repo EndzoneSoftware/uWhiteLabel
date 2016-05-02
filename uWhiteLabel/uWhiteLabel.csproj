@@ -259,11 +259,13 @@
     <Compile Include="Controllers\uWhiteLabelTreeController.cs" />
     <Compile Include="Events\uWhiteLabelTreeEvents.cs" />
     <Compile Include="Helpers\AppSettingsHelpers.cs" />
-    <Compile Include="Helpers\Configure.cs" />
+    <Compile Include="Helpers\ConfigureLogin.cs" />
+    <Compile Include="Helpers\ConfigureWelcome.cs" />
     <Compile Include="Install\InstallControl.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Install\uWhiteLabelDashboardAction.cs" />
+    <Compile Include="Models\LoginDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -279,6 +281,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uwhitelabel-config\Config.controller.js" />
+    <Content Include="App_Plugins\uWhiteLabel\backoffice\uwhitelabel-config\login.html" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uwhitelabel-config\welcome.html" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\Install.ascx" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uWhiteLabel.resources.js" />

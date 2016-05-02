@@ -17,7 +17,7 @@ namespace uWhiteLabel.Events
         {
             if (sender.TreeAlias == "uwhitelabel-config")
             {
-                if (!Configure.IsWelcomeScreenConfigured())
+                if (!ConfigureWelcome.IsWelcomeScreenConfigured())
                     e.Node.CssClasses.Add("icon-warning");
             }
         }
