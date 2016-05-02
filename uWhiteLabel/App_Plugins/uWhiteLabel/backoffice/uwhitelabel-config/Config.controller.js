@@ -71,6 +71,12 @@
 
         var vm = this;
 
+
+        uWhiteLabelResource.GetLoginDetails().then(function (response) {
+            vm.logo = response.data.LogoUrl;
+            vm.greeting = response.data.Greeting;
+        });
+
         vm.saveLogoButtonState = "init";
         $scope.SaveLogin = function (logoUrl, greeting) {
             vm.saveLogoButtonState = "busy";

@@ -65,6 +65,13 @@ namespace uWhiteLabel
 
 
         [HttpGet]
+        public object GetLoginDetails()
+        {
+            return Configure.GetLoginDetails();
+        }
+
+
+        [HttpGet]
         public object GetHtml(bool useDefault)
         {
             var html = Configure.GetHtml(useDefault);

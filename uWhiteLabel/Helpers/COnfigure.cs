@@ -80,5 +80,12 @@ namespace uWhiteLabel.Helpers
             string json = JsonConvert.SerializeObject(loginDetails);
             File.WriteAllText(saveFile, json);
         }
+
+        public static LoginDetails GetLoginDetails()
+        {
+            var saveFile = System.Web.HttpContext.Current.Server.MapPath(pathToLoginJson);
+            string json = File.ReadAllText(saveFile);
+            return JsonConvert.DeserializeObject<LoginDetails>(json);
+        }
     }
 }
