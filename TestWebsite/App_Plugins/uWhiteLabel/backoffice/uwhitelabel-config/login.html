@@ -9,12 +9,12 @@
             <umb-tab-view>
                 <umb-tab id="tab1" rel="intro">
                     <div class="umb-pane">
-                        <p>You can add your logo and change the greeting text on the Umbraco backoffice login.</p>
+                        <p>Show your logo and change the greeting text on the Umbraco backoffice login.</p>
                         <umb-pane>
-                            <umb-control-group label="Logo Url">
+                            <umb-control-group label="Logo Image Url" description="Absolute path to image (include http if hosted externally)">
                                 <input type="text" name="logo" ng-model="vm.logo" />
                             </umb-control-group>
-                            <umb-control-group label="Greeting Text">
+                            <umb-control-group label="Greeting Text" description="Leave blank to keep default Umbraco greeting.">
                                 <input type="text" name="greeting" ng-model="vm.greeting" />
                             </umb-control-group>
                         </umb-pane>

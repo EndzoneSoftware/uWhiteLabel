@@ -3,6 +3,7 @@ using System.Web.Http;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 using uWhiteLabel.Helpers;
+using uWhiteLabel.Models;
 
 namespace uWhiteLabel
 {
@@ -52,6 +53,17 @@ namespace uWhiteLabel
             var data = new { Html = html };
             return data;
         }
+
+
+        [HttpPost]
+        public object SaveLoginDetails(LoginDetails loginDetails)
+        {
+            Configure.SaveLoginDetails(loginDetails);
+            var data = new { logoUrl = loginDetails.LogoUrl, greetings = loginDetails.Greeting };
+            return data;
+        }
+
+
         [HttpGet]
         public object GetHtml(bool useDefault)
         {
