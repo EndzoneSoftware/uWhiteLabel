@@ -61,4 +61,14 @@
     //register the controller
     angular.module("umbraco").controller('uWhiteLabel.Config.WelcomeScreenController', uWhiteLabelWelcomeScreenController);
 
+
+    
+    function uWhiteLabelLoginScreenController($scope, $routeParams, $http, uWhiteLabelResource, notificationsService, navigationService) {
+        navigationService.syncTree({ tree: 'uwhitelabel-config', path: ["-1", "2223"], forceReload: false });
+
+
+        $scope.content = { tabs: [{ id: 1, label: "Setup" }] };
+
+    }
+    angular.module("umbraco").controller('uWhiteLabel.Config.LoginScreenController', uWhiteLabelLoginScreenController);
 })();

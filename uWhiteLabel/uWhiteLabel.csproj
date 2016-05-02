@@ -279,6 +279,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uwhitelabel-config\Config.controller.js" />
+    <Content Include="App_Plugins\uWhiteLabel\backoffice\uwhitelabel-config\login.html" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uwhitelabel-config\welcome.html" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\Install.ascx" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uWhiteLabel.resources.js" />
