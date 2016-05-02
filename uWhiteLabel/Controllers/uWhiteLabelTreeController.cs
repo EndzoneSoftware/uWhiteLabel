@@ -24,7 +24,7 @@ namespace uWhiteLabel
                 var tree = new TreeNodeCollection();
                 var node = CreateTreeNode("2222", id, queryStrings, "Welcome Screen", "icon-smiley-inverted");
                 //see http://issues.umbraco.org/issue/U4-6617
-                node.RoutePath = "/developer/uwhitelabel-config/welcome/edit";
+                node.RoutePath = "/developer/uwhitelabel-config/welcomescreen/edit";
                 tree.Add(node);
 
                 var loginNode = CreateTreeNode("2223", id, queryStrings, "Login Screen", "icon-logout");
