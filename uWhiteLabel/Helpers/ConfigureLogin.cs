@@ -4,6 +4,7 @@ using System.IO;
 using uWhiteLabel.Models;
 using Newtonsoft.Json;
 using System.Web;
+using System.Text.RegularExpressions;
 
 namespace uWhiteLabel.Helpers
 {
@@ -42,17 +43,26 @@ namespace uWhiteLabel.Helpers
             string loginViewHTML = File.ReadAllText(loginViewFile);
 
             string originalHTML = "<h1>{{greeting}}</h1>";
-            //todo check for empty and only inject if not (for both)
-            string injectHtml = string.Format("<img src=\"{0}\"><h1>{1}</h1>", loginDetails.LogoUrl, loginDetails.Greeting);
+            string injectHtml = originalHTML; //default is to reset back to original
+            var regExInjectHtml = new Regex("<!--uWhiteLabel-->(.*)<!--/uWhiteLabel-->"); //we have used html comments to delimit the injected HTML
+
+            if (!String.IsNullOrWhiteSpace(loginDetails.LogoUrl) || !String.IsNullOrWhiteSpace(loginDetails.Greeting))
+            {
+                string logoHtml = (String.IsNullOrWhiteSpace(loginDetails.LogoUrl)) ? "" : String.Format("<img src=\"{0}\">", loginDetails.LogoUrl);
+                string greetingsHtml = (String.IsNullOrWhiteSpace(loginDetails.Greeting)) ? originalHTML : String.Format("<h1>{0}</h1>", loginDetails.Greeting);
+                injectHtml = string.Format("<!--uWhiteLabel-->{0}{1}<!--/uWhiteLabel-->", logoHtml, greetingsHtml);
+            }
+
             if (loginViewHTML.Contains(originalHTML))
             {
-                string newHTML = loginViewHTML.Replace(originalHTML, injectHtml);
-                File.WriteAllText(loginViewFile, newHTML);
+                loginViewHTML = loginViewHTML.Replace(originalHTML, injectHtml);
             }
             else
             {
-                throw new NotImplementedException();
+                loginViewHTML = regExInjectHtml.Replace(loginViewHTML, injectHtml);
             }
+
+            File.WriteAllText(loginViewFile, loginViewHTML);
 
             //todo: can we clear client dependancy (to force view update) cache here?
 
