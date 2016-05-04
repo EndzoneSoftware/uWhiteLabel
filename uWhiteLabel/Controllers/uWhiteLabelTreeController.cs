@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Formatting;
-using System.Web;
-
 using Umbraco.Core;
+using Umbraco.Core.Configuration;
 using Umbraco.Web.Models.Trees;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.Trees;
@@ -25,9 +22,11 @@ namespace uWhiteLabel
                 var node = CreateTreeNode("2222", id, queryStrings, "Welcome Screen", "icon-smiley-inverted");
                 //see http://issues.umbraco.org/issue/U4-6617
                 node.RoutePath = "/developer/uwhitelabel-config/welcomescreen/edit";
+                node.AdditionalData.Add("umbVersion", UmbracoVersion.Current);
                 tree.Add(node);
 
                 var loginNode = CreateTreeNode("2223", id, queryStrings, "Login Screen", "icon-logout");
+                loginNode.AdditionalData.Add("umbVersion", UmbracoVersion.Current);
                 loginNode.RoutePath = "/developer/uwhitelabel-config/login/edit";
                 tree.Add(loginNode);
 

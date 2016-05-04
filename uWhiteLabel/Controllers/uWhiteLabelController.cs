@@ -4,6 +4,9 @@ using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
 using uWhiteLabel.Helpers;
 using uWhiteLabel.Models;
+using Umbraco;
+using Umbraco.Core;
+using Umbraco.Core.Configuration;
 
 namespace uWhiteLabel
 {
@@ -42,7 +45,13 @@ namespace uWhiteLabel
             }
 
             ConfigureWelcome.SaveIFrameUrl(url);
-            
+        }
+
+
+        [HttpGet]
+        public object GetUmbracoVersion()
+        {
+            return UmbracoVersion.Current;
         }
 
 
@@ -53,6 +62,8 @@ namespace uWhiteLabel
             var data = new { Html = html };
             return data;
         }
+
+        
 
 
         [HttpPost]

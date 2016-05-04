@@ -8,7 +8,14 @@
         $scope.content = { tabs: [{ id: 1, label: "Help" }, { id: 2, label: "Iframe" }, { id: 3, label: "Html" }] };
 
         var vm = this;
-        
+
+        uWhiteLabelResource.GetUmbracoVersion().then(function (response) {
+            vm.isUmbButton = SupportsUmbButton(response.data);
+        });
+
+
+        vm.showUmbButton = true;
+
         uWhiteLabelResource.IsWelcomeScreenConfiged().then(function (response) {
             vm.isConfiged = response.data.isConfiged;
         });
@@ -62,7 +69,7 @@
     angular.module("umbraco").controller('uWhiteLabel.Config.WelcomeScreenController', uWhiteLabelWelcomeScreenController);
 
 
-    
+
     function uWhiteLabelLoginScreenController($scope, $routeParams, $http, uWhiteLabelResource, notificationsService, navigationService) {
         navigationService.syncTree({ tree: 'uwhitelabel-config', path: ["-1", "2223"], forceReload: false });
 
@@ -70,6 +77,10 @@
         $scope.content = { tabs: [{ id: 1, label: "Setup" }] };
 
         var vm = this;
+
+        uWhiteLabelResource.GetUmbracoVersion().then(function (response) {
+            vm.isUmbButton = SupportsUmbButton(response.data);
+        });
 
 
         uWhiteLabelResource.GetLoginDetails().then(function (response) {
@@ -91,4 +102,46 @@
         }
     }
     angular.module("umbraco").controller('uWhiteLabel.Config.LoginScreenController', uWhiteLabelLoginScreenController);
+})();
+
+function SupportsUmbButton(version) {
+    var majorVersion = version._Major;
+    var minorVersion = version._Minor;
+    return majorVersion >= 7 && minorVersion >= 4;
+}
+
+
+(function () {
+    'use strict';
+
+    //umbButton doesn't exist before v7.4 so lets create a basic one for us to use
+    function uWhiteLabelButtonDirective() {
+
+
+        var directive = {
+            transclude: true,
+            restrict: 'E',
+            replace: true,
+            templateUrl: '/App_Plugins/uWhiteLabel/backoffice/uwhitelabel-config/umb-button.htm',
+            scope: {
+                action: "&?",
+                href: "@?",
+                type: "@",
+                buttonStyle: "@?",
+                state: "=?",
+                shortcut: "@?",
+                shortcutWhenHidden: "@",
+                label: "@?",
+                labelKey: "@?",
+                icon: "@?",
+                disabled: "="
+            }
+        };
+
+        return directive;
+
+    }
+
+    angular.module('umbraco.directives').directive('uwlButton', uWhiteLabelButtonDirective);
+
 })();

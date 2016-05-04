@@ -25,6 +25,9 @@
          },
          GetLoginDetails: function () {
              return $http.get("backoffice/uWhiteLabel/Dashboard/GetLoginDetails");
+         },
+         GetUmbracoVersion: function () {
+             return $http.get("backoffice/uWhiteLabel/Dashboard/GetUmbracoVersion");
          }
      };
  });

@@ -280,6 +280,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\uWhiteLabel\backoffice\uwhitelabel-config\umb-button.htm" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uwhitelabel-config\Config.controller.js" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uwhitelabel-config\login.html" />
     <Content Include="App_Plugins\uWhiteLabel\backoffice\uwhitelabel-config\welcomescreen.html" />
@@ -301,6 +302,9 @@
     <PostBuildEvent>if $(ConfigurationName) == Debug (
 copy /Y "C:\Projects\Endzone.IO\uWhiteLabel\uWhiteLabel\bin\Debug\uWhiteLabel.dll" "C:\Projects\Endzone.IO\uWhiteLabel\TestWebSite\bin\uWhiteLabel.dll"
 xcopy /Y /E "C:\Projects\Endzone.IO\uWhiteLabel\uWhiteLabel\App_Plugins\uWhiteLabel" "C:\Projects\Endzone.IO\uWhiteLabel\TestWebSite\App_Plugins\uWhiteLabel\"
+
+copy /Y "C:\Projects\Endzone.IO\uWhiteLabel\uWhiteLabel\bin\Debug\uWhiteLabel.dll" "C:\Projects\Endzone.IO\uWhiteLabel\TestWebsite-v7.3.1\bin\uWhiteLabel.dll"
+xcopy /Y /E "C:\Projects\Endzone.IO\uWhiteLabel\uWhiteLabel\App_Plugins\uWhiteLabel" "C:\Projects\Endzone.IO\uWhiteLabel\TestWebsite-v7.3.1\App_Plugins\uWhiteLabel\"
 )</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

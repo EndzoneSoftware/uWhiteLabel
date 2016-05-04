@@ -19,19 +19,30 @@
                             </umb-control-group>
                         </umb-pane>
                         <div class="btn-toolbar umb-btn-toolbar pull-right">
-                            <umb-button action="SaveLogin(vm.logo, vm.greeting)"
-                                        type="button"
-                                        button-style="success"
-                                        state="vm.saveLogoButtonState"
-                                        shortcut="ctrl+s"
-                                        label="Save"
-                                        disabled="vm.saveLogoButtonState === 'busy' || uWhiteLabelConfigForm.logo.$invalid">
-                            </umb-button>
-
+                            <div ng-show="vm.isUmbButton">
+                                <umb-button action="SaveLogin(vm.logo, vm.greeting)"
+                                            type="button"
+                                            button-style="success"
+                                            state="vm.saveLogoButtonState"
+                                            shortcut="ctrl+s"
+                                            label="Save"
+                                            disabled="vm.saveLogoButtonState === 'busy' || uWhiteLabelConfigForm.logo.$invalid">
+                                </umb-button>
+                            </div>
+                            <div ng-hide="vm.isUmbButton">
+                                <uwl-button action="SaveLogin(vm.logo, vm.greeting)"
+                                            type="button"
+                                            button-style="success"
+                                            state="vm.saveLogoButtonState"
+                                            shortcut="ctrl+s"
+                                            label="Save"
+                                            disabled="vm.saveLogoButtonState === 'busy' || uWhiteLabelConfigForm.logo.$invalid">
+                                </uwl-button>
+                            </div>
                         </div>
                     </div>
-                    </umb-tab>
-                </umb-tab-view>
+                </umb-tab>
+            </umb-tab-view>
         </umb-panel>
     </form>
 </div>
