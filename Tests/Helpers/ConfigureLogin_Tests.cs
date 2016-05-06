@@ -25,6 +25,33 @@ namespace Tests.Helpers
 
 
         [TestMethod]
+        public void GetInjectedHtml_nogreeting_firstrun()
+        {
+            LoginDetails d = new LoginDetails { LogoUrl = "url", Greeting = "" };
+
+            string expected = String.Format(afterFirstRunHtml, "{{greeting}}", String.Format(imgHtml, d.LogoUrl));
+            string html = RunInjectHTMLMethod(d, initialHtml);
+
+            Assert.AreEqual(expected, html);
+        }
+
+        [TestMethod]
+        public void GetInjectedHtml_nogreeting_secondrun()
+        {
+            LoginDetails d = new LoginDetails { LogoUrl = "url", Greeting = "" };
+
+            string html = RunInjectHTMLMethod(d, initialHtml);
+
+            d.Greeting = "changed greeting";
+
+            string expected = String.Format(afterFirstRunHtml, "{{greeting}}", String.Format(imgHtml, d.LogoUrl));
+
+            html = RunInjectHTMLMethod(d, html);
+
+            Assert.AreEqual(expected, html);
+        }
+
+        [TestMethod]
         public void GetInjectedHtml_nologo_firstrun()
         {
             LoginDetails d = new LoginDetails { LogoUrl = "", Greeting = "test greeting" };
@@ -68,14 +95,14 @@ namespace Tests.Helpers
         {
             LoginDetails d = new LoginDetails { LogoUrl = "url", Greeting = "test greeting" };
 
-            string html = RunInjectHTMLMethod(d, initialHtml);
+            string current = String.Format(afterFirstRunHtml, d.Greeting, String.Format(imgHtml, d.LogoUrl));
 
             d.Greeting = "changed greeting";
             d.LogoUrl = "new url";
 
             string expected = String.Format(afterFirstRunHtml, d.Greeting, String.Format(imgHtml, d.LogoUrl));
 
-            html = RunInjectHTMLMethod(d, html);
+            var html = RunInjectHTMLMethod(d, current);
 
             Assert.AreEqual(expected, html);
         }
