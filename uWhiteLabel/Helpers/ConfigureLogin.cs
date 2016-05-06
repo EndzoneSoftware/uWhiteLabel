@@ -41,22 +41,34 @@ namespace uWhiteLabel.Helpers
 
         /// <summary>
         /// This injects static html into the Umbraco Login view.
-        ///  Hopefully this is less error prone than messing with the Umbraco controllers or larger view changes
+        ///  Hopefully this is less error prone than messing with the Umbraco Angular controllers or larger view changes
         /// </summary>
         /// <param name="loginDetails"></param>
         public static void InjectHtmlIntoLoginView(LoginDetails loginDetails)
         {
+            if (loginDetails == null)
+                throw new ArgumentNullException("loginDetails");
+
             var loginViewFile = HttpContext.Current.Server.MapPath(pathToLoginView);
             //todo: check file exists?
             string loginViewHTML = File.ReadAllText(loginViewFile);
+            loginViewHTML = GetInjectedHtml(loginDetails, loginViewHTML);
 
+            File.WriteAllText(loginViewFile, loginViewHTML);
+
+            //todo: can we clear client dependancy (to force view update) cache here?
+
+        }
+
+        private static string GetInjectedHtml(LoginDetails loginDetails, string loginViewHTML)
+        {
             string originalHTML = "<h1>{{greeting}}</h1>";
             string injectHtml = originalHTML; //default is to reset back to original
             var regExInjectHtml = new Regex("<!--uWhiteLabel-->(.*)<!--/uWhiteLabel-->"); //we have used html comments to delimit the injected HTML
 
             if (!String.IsNullOrWhiteSpace(loginDetails.LogoUrl) || !String.IsNullOrWhiteSpace(loginDetails.Greeting))
             {
-                string logoHtml = (String.IsNullOrWhiteSpace(loginDetails.LogoUrl)) ? "" : String.Format("<img src=\"{0}\">", loginDetails.LogoUrl);
+                string logoHtml = (String.IsNullOrWhiteSpace(loginDetails.LogoUrl)) ? "" : String.Format("<img src=\"{0}\" />", loginDetails.LogoUrl);
                 string greetingsHtml = (String.IsNullOrWhiteSpace(loginDetails.Greeting)) ? originalHTML : String.Format("<h1>{0}</h1>", loginDetails.Greeting);
                 injectHtml = string.Format("<!--uWhiteLabel-->{0}{1}<!--/uWhiteLabel-->", logoHtml, greetingsHtml);
             }
@@ -70,10 +82,7 @@ namespace uWhiteLabel.Helpers
                 loginViewHTML = regExInjectHtml.Replace(loginViewHTML, injectHtml);
             }
 
-            File.WriteAllText(loginViewFile, loginViewHTML);
-
-            //todo: can we clear client dependancy (to force view update) cache here?
-
+            return loginViewHTML;
         }
     }
 }

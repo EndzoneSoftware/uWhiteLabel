@@ -264,6 +264,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Helpers\ConfigureLogin_Tests.cs" />
     <Compile Include="uWhiteLabelDashboardAction_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
