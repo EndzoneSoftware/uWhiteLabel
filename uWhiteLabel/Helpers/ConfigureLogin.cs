@@ -73,7 +73,7 @@ namespace uWhiteLabel.Helpers
                 injectHtml = string.Format("<!--uWhiteLabel-->{0}{1}<!--/uWhiteLabel-->", logoHtml, greetingsHtml);
             }
 
-            if (loginViewHTML.Contains(originalHTML))
+            if (!loginViewHTML.Contains("<!--uWhiteLabel-->"))
             {
                 loginViewHTML = loginViewHTML.Replace(originalHTML, injectHtml);
             }

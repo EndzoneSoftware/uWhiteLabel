@@ -42,7 +42,7 @@ namespace Tests.Helpers
 
             string html = RunInjectHTMLMethod(d, initialHtml);
 
-            d.Greeting = "changed greeting";
+            d.LogoUrl = "changed url";
 
             string expected = String.Format(afterFirstRunHtml, "{{greeting}}", String.Format(imgHtml, d.LogoUrl));
 
