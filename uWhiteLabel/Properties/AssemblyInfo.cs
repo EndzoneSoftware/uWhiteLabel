@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("uWhiteLabel")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Custom backoffice welcome screen for your Umbraco editors. More info: http://www.happyporch.com/uwhitelabel")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("www.happyporch.com")]
 [assembly: AssemblyProduct("uWhiteLabel")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("UNLICENSE")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
